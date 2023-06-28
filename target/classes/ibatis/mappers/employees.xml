@@ -1,6 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
 <sqlMap>
+		
+	<!-- Employee에 값 담아서 줄테니까 그거 받으란 소리 -->
+	<!-- SQL 과 객체를 매핑함 이제 Dao 가시오 -->
+	<insert id="insertEmployee" parameterClass="vo.Employee">
+		insert into employees
+		(employee_id, first_name, last_name, email, phone_number, hire_date, job_id, salary)
+		values
+		(employees_seq.nextval, #firstName#, #lastName#, #email#, #phoneNumber#, sysdate, #jobId#, #salary#)
+	</insert>
+	
 	<select id="getAllEmployees" resultClass="vo.Employee">
 		select employee_id as id,
 		       first_name as firstName
